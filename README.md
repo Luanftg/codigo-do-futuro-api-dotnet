@@ -32,3 +32,7 @@
 ## Projeto Integrador Código do Futuro
 
 ![Alt text](abstraction.png)
+
+## Conceitos Ágile Usados
+
+Conceito de Pronto: Terminado - Revisado - Mergeado
