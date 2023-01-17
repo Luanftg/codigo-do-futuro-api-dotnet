@@ -34,3 +34,6 @@
 ![Alt text](abstraction.png)
 [Projeto Integrador](https://docs.google.com/document/d/1z0wzqAeLgMYQFg_jFOTQ1xj_BF1Byo7D/edit?usp=sharing&ouid=105171219935977454112&rtpof=true&sd=true)
 
+## Conceitos Ágile Usados
+
+Conceito de Pronto: Terminado - Revisado - Mergeado
