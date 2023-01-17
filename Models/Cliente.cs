@@ -5,4 +5,5 @@ public record Cliente
     string Telefone {get;set;} = default!;
     string Email {get;set;} = default!;
     string Cpf {get;set;} = default!;
+    string Endereco_Id {get;set;} = default!;
 }
