@@ -1,3 +1,5 @@
+namespace cdf_api_integrador.Models;
+
 public record Pedido
 {
     int Id {get;set;}= default!;
