@@ -2,13 +2,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace cdf_api_integrador.Models;
 
-public record Loja
+public record Usuario
 {
     [Key]
     public int Id {get;set;}= default!;
+    public string Email {get;set;} = default!;
+    public string Senha {get;set;} = default!;
+    public string Regra {get;set;} = default!;
     public string Nome {get;set;} = default!;
-    public int Endereco_id {get;set;} = default!;
-    public string? Latitude {get;set;} = default!;
-    public string? Longitude {get;set;} = default!;
-
 }
+
+

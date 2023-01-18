@@ -2,7 +2,6 @@
 
 <div align="center">
 
-
 <h1> :computer: # Equipe: </h1>
 
 </div>
@@ -29,6 +28,22 @@
 </table>
 
 <hr>
+
 ## Projeto Integrador Código do Futuro
 
-![Alt text](abstraction.png)
+### Desafio
+
+### Solução
+
+*Controllers*
+- recebe contexto por **injeção de dependência**
+  - `builder.Services.AddScoped<>` 'resolvida' em `Program.cs`
+
+### Referências
+
+- [Desafio Final - Codigo do Futuro](https://docs.google.com/document/d/1z0wzqAeLgMYQFg_jFOTQ1xj_BF1Byo7D/edit)
+- [Relações Entity Framework](https://learn.microsoft.com/pt-br/ef/ef6/fundamentals/relationships)
+- **Pacotes**
+- [SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)
+
+dotnet aspnet-codegenerator controller -name UsuariosController -async -api -m Usuario -dc ContextEntity -outDir Controllers
