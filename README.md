@@ -2,7 +2,6 @@
 
 <div align="center">
 
-
 <h1> :computer: # Equipe: </h1>
 
 </div>
@@ -29,6 +28,11 @@
 </table>
 
 <hr>
+
 ## Projeto Integrador Código do Futuro
 
 ![Alt text](abstraction.png)
+
+### Referências
+
+- [Relações Entity Framework](https://learn.microsoft.com/pt-br/ef/ef6/fundamentals/relationships)
