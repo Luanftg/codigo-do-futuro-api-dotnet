@@ -43,7 +43,7 @@ namespace cdf_api_integrador.Controllers
         
         await _repository.AtualizarAsync(usuario);
         return StatusCode(200, usuario);
-    
+        
         }
 
         // Post: Administrador

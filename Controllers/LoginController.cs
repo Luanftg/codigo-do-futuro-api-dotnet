@@ -44,6 +44,6 @@ namespace cdf_api_integrador.Controllers
         userLogged.Token = TokenJWT.Builder(userLogged);
         return StatusCode(200, userLogged);
         }
-
+        
     }     
 }
