@@ -1,10 +1,13 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace cdf_api_integrador.Models;
 
 public record Pedido
 {
-    int Id {get;set;}= default!;
-    int Cliente_Id {get;set;} = default!;
-    decimal ValorTotal {get;set;} = default!;
-    DateTime DtCriacao {get;set;} = default!;
+    [Key]
+    public int Id {get;set;}= default!;
+    public int Cliente_Id {get;set;} = default!;
+    public decimal ValorTotal {get;set;} = default!;
+    public DateTime DtCriacao {get;set;} = default!;
 
 }

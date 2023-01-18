@@ -1,8 +1,13 @@
+namespace cdf_api_integrador.Models;
+
+using System.ComponentModel.DataAnnotations;
+
 public record PedidoProduto
 {
-    int Id {get;set;}= default!;
-    int Produto_Id {get;set;} = default!;
-    int Quantidade {get;set;} = default!;
-    decimal Valor {get;set;} = default!;
-    int Pedido_Id {get;set;} = default!;
+    [Key]
+    public int Id {get;set;} = default!;
+    public int Produto_Id {get;set;} = default!;
+    public int Quantidade {get;set;} = default!;
+    public decimal Valor {get;set;} = default!;
+    public int Pedido_Id {get;set;} = default!;
 }

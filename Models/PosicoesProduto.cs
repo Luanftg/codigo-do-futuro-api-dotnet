@@ -1,11 +1,14 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace cdf_api_integrador.Models;
 
 public record PosicoesProduto
 {
-    int Id {get;set;}= default!;
-    int Campanha_Id {get;set;} = default!;
-    decimal Produto_Id {get;set;} = default!;
-    int PosicaoX {get;set;} = default!;
-    int PosicaoY {get;set;} = default!;
+    [Key]
+    public int Id {get;set;}= default!;
+    public int Campanha_Id {get;set;} = default!;
+    public decimal Produto_Id {get;set;} = default!;
+    public int PosicaoX {get;set;} = default!;
+    public int PosicaoY {get;set;} = default!;
 
 }

@@ -1,11 +1,14 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace cdf_api_integrador.Models;
 
 public record Campanha
 {
-    int Id {get;set;} =default!;
-    int Loja_Id {get;set;} =default!;
-    string Nome {get;set;} = default!;
-    string Descricao {get;set;} = default!;
-    DateTime Dt_Criacao {get;set;} = default!;
-    string Photo_Url {get;set;} = default!;
+    [Key]
+    public int Id {get;set;} = default!;
+    public int Loja_Id {get;set;} =default!;
+    public string Nome {get;set;} = default!;
+    public string Descricao {get;set;} = default!;
+    public DateTime Dt_Criacao {get;set;} = default!;
+    public string Photo_Url {get;set;} = default!;
 }

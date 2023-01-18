@@ -1,11 +1,15 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace cdf_api_integrador.Models;
 
 public record Usuario
 {
-    int Id {get;set;}= default!;
-    string Email {get;set;} = default!;
-    string Senha {get;set;} = default!;
-    string Regra {get;set;} = default!;
-    decimal Nome {get;set;} = default!;
-
+    [Key]
+    public int Id {get;set;}= default!;
+    public string Email {get;set;} = default!;
+    public string Senha {get;set;} = default!;
+    public string Regra {get;set;} = default!;
+    public decimal Nome {get;set;} = default!;
 }
+
+
