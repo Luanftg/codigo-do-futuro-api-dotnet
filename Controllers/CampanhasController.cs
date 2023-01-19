@@ -23,24 +23,24 @@ namespace cdf_api_integrador.Controllers
 
         // GET: api/Campanha
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Campanha>>> GetProdutos()
+        public async Task<ActionResult<IEnumerable<Campanha>>> GetCampanhas()
         {
-          if (_context.Produtos == null)
+          if (_context.Campanhas == null)
           {
               return NotFound();
           }
-            return await _context.Produtos.ToListAsync();
+            return await _context.Campanhas.ToListAsync();
         }
 
         // GET: api/Campanha/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Campanha>> GetCampanha(int id)
         {
-          if (_context.Produtos == null)
+          if (_context.Campanhas == null)
           {
               return NotFound();
           }
-            var campanha = await _context.Produtos.FindAsync(id);
+            var campanha = await _context.Campanhas.FindAsync(id);
 
             if (campanha == null)
             {
@@ -86,11 +86,11 @@ namespace cdf_api_integrador.Controllers
         [HttpPost]
         public async Task<ActionResult<Campanha>> PostCampanha(Campanha campanha)
         {
-          if (_context.Produtos == null)
+          if (_context.Campanhas == null)
           {
-              return Problem("Entity set 'ContextEntity.Produtos'  is null.");
+              return Problem("Entity set 'ContextEntity.Campanhas'  is null.");
           }
-            _context.Produtos.Add(campanha);
+            _context.Campanhas.Add(campanha);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCampanha", new { id = campanha.Id }, campanha);
@@ -100,17 +100,17 @@ namespace cdf_api_integrador.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCampanha(int id)
         {
-            if (_context.Produtos == null)
+            if (_context.Campanhas == null)
             {
                 return NotFound();
             }
-            var campanha = await _context.Produtos.FindAsync(id);
+            var campanha = await _context.Campanhas.FindAsync(id);
             if (campanha == null)
             {
                 return NotFound();
             }
 
-            _context.Produtos.Remove(campanha);
+            _context.Campanhas.Remove(campanha);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -118,7 +118,7 @@ namespace cdf_api_integrador.Controllers
 
         private bool CampanhaExists(int id)
         {
-            return (_context.Produtos?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Campanhas?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
