@@ -1,3 +1,4 @@
+using cdf_api_integrador.Model;
 using cdf_api_integrador.Models;
 using cdf_api_integrador.Repositories.Entity;
 using cdf_api_integrador.Repositories.Interface;
@@ -11,6 +12,7 @@ builder.Services.AddControllers();
 
 // builder.Services.AddScoped<IRepository<Campanha>,>();
 builder.Services.AddScoped<IRepositoryUser<Usuario>,UserRepositoryEntity>();
+builder.Services.AddScoped<IRepository<Produto>,ProductRepositoryEntity>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
