@@ -7,118 +7,77 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using cdf_api_integrador.Models;
 using cdf_api_integrador.Repositories.Entity;
+using cdf_api_integrador.Repositories.Interface;
+using cdf_api_integrador.Services;
 
 namespace cdf_api_integrador.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
-    public class CampanhaController : ControllerBase
+    public class CampanhasController : ControllerBase
     {
-        private readonly ContextEntity _context;
+        private readonly IRepository<Campanha> _repository;
 
-        public CampanhaController(ContextEntity context)
+        public CampanhasController(IRepository<Campanha> repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         // GET: api/Campanha
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Campanha>>> GetCampanhas()
+        public async Task<IActionResult> Index()
         {
-          if (_context.Campanhas == null)
-          {
-              return NotFound();
-          }
-            return await _context.Campanhas.ToListAsync();
+            var campanha = await _repository.TodosAsync();
+            return StatusCode(200, campanha);
         }
 
-        // GET: api/Campanha/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Campanha>> GetCampanha(int id)
+        public async Task<IActionResult> Details([FromRoute] int id)
         {
-          if (_context.Campanhas == null)
-          {
-              return NotFound();
-          }
-            var campanha = await _context.Campanhas.FindAsync(id);
-
-            if (campanha == null)
-            {
-                return NotFound();
-            }
-
-            return campanha;
+            var campanha = (await _repository.TodosAsync()).Find(c => c.Id == id);
+            return StatusCode(200, campanha);
         }
-
-        // PUT: api/Campanha/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCampanha(int id, Campanha campanha)
-        {
-            if (id != campanha.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(campanha).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CampanhaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Campanha
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
+        // Post: Veiculos
+        // [Logged]
         [HttpPost]
-        public async Task<ActionResult<Campanha>> PostCampanha(Campanha campanha)
+        public async Task<IActionResult> Create([FromBody] CampaingDTO campaingDTO)
         {
-          if (_context.Campanhas == null)
-          {
-              return Problem("Entity set 'ContextEntity.Campanhas'  is null.");
-          }
-            _context.Campanhas.Add(campanha);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCampanha", new { id = campanha.Id }, campanha);
+            var campanha = BuilderService<Campanha>.Builder(campaingDTO);
+            await _repository.IncluirAsync(campanha);
+            return StatusCode(201, campanha);
         }
+        
+        // Put: Veiculos
+        // [Logged]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Campanha campanha)
+        {
 
-        // DELETE: api/Campanha/5
+            if(id != campanha.Id)
+            {
+                return StatusCode(400, new {Mensagem = "O Id do veículo precisa coincidir com o id passado pela url"});
+            }
+            
+            await _repository.AtualizarAsync(campanha);
+            return StatusCode(200, campanha);
+        }
+        
+        // Delete: Veiculos
+        // [Logged]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCampanha(int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            if (_context.Campanhas == null)
+
+            var campanha = (await _repository.TodosAsync()).Find(v=>v.Id ==id);
+
+            if(campanha is null)
             {
-                return NotFound();
+                return StatusCode(404, new {Mensagem = "A campanha informado não existe na base de dados"});
             }
-            var campanha = await _context.Campanhas.FindAsync(id);
-            if (campanha == null)
-            {
-                return NotFound();
-            }
-
-            _context.Campanhas.Remove(campanha);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool CampanhaExists(int id)
-        {
-            return (_context.Campanhas?.Any(e => e.Id == id)).GetValueOrDefault();
+            
+            await _repository.ApagarAsync(campanha);
+            return StatusCode(204);
         }
     }
 }

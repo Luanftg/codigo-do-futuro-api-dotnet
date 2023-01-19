@@ -14,7 +14,7 @@ using cdf_api_integrador.Services.Autenticacao;
 
 namespace cdf_api_integrador.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
     {
@@ -27,7 +27,7 @@ namespace cdf_api_integrador.Controllers
 
         // Post: Administrador
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] UserDTO userDTO)
+        public async Task<IActionResult> Login([FromBody] UserLoginDTO userDTO)
         {
            if(string.IsNullOrEmpty(userDTO.Email) || string.IsNullOrEmpty(userDTO.Senha))
             return StatusCode(400, new {

@@ -5,7 +5,7 @@ using cdf_api_integrador.Repositories.Interface;
 using cdf_api_integrador.Services;
 using Microsoft.AspNetCore.Mvc;
 
-[Route("endereco")]
+[Route("[controller]")]
 public class EnderecosController : ControllerBase
 {
     private IRepository<Endereco> _repository;
@@ -15,7 +15,7 @@ public class EnderecosController : ControllerBase
     }
     // GET: Veiculos
     // [Logged]
-    [HttpGet("/endereco")]
+    [HttpGet]
     public async Task<IActionResult> Index()
     {
         var endereco = await _repository.TodosAsync();
@@ -31,7 +31,7 @@ public class EnderecosController : ControllerBase
     
     // Post: Veiculos
     // [Logged]
-    [HttpPost("/endereco")]
+    [HttpPost]
     public async Task<IActionResult> Create([FromBody] AdressDTO addressDTO)
     {
         var endereco = BuilderService<Endereco>.Builder(addressDTO);
@@ -41,7 +41,7 @@ public class EnderecosController : ControllerBase
     
     // Put: Veiculos
     // [Logged]
-    [HttpPut("/endereco/{id}")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Endereco endereco)
     {
 
@@ -56,7 +56,7 @@ public class EnderecosController : ControllerBase
     
     // Delete: Veiculos
     // [Logged]
-    [HttpDelete("/endereco/{id}")]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
 
