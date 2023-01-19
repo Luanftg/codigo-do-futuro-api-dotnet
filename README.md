@@ -55,14 +55,16 @@
 
 ## DESENVOLVEDORES
 
-**INCLUIR PASSWORD NA STRING DE CONEÃO!**
+- **INCLUIR PASSWORD NA STRING DE CONEÃO!**
+- Rodar migration para criação do banco:
+  - `dotnet ef migrations add MinhaMigracao`
+  - `dotnet ef database update`
 
 ### Desafio
 
 ### Solução
 
-
-#### Criação dos EndPoints
+#### :star: Criação dos EndPoints
 
 - [x] `/principal`
 - [x] `/login`
@@ -74,7 +76,7 @@
 - [x] `/pedidos-produtos`
 - [x] `/posicoes-produtos`
 
-#### Criação dos Serviços
+#### :star: Criação dos Serviços
 
 - [x] Autenticação com JWT
 - [x] Hash de para armazenar senha criptografada no banco de dados
