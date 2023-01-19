@@ -1,14 +1,9 @@
-using System.ComponentModel.DataAnnotations;
+namespace cdf_api_integrador.DTOs;
 
-namespace cdf_api_integrador.Models;
-
-public record Produto
+public record ProductDTO
 {
-    [Key]
-    public int Id {get;set;}= default!;
     public string Nome {get;set;} = default!;
     public string Descricao {get;set;} = default!;
     public decimal Valor {get;set;} = default!;
     public int QtdEstoque {get;set;} = default!;
-
 }

@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace cdf_api_integrador.Models;
 
+[Table("posicoes-produtos")]
 public record PosicoesProduto
 {
     [Key]

@@ -1,3 +1,4 @@
+
 using cdf_api_integrador.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,16 +12,18 @@ public class ContextEntity : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         var conexao = Environment.GetEnvironmentVariable("DATABASE_CDF");
-        if(conexao == null) conexao = "Server=localhost;Database=api_cdf-radar;Uid=root;Pwd=Luan_17101988;";
+        if(conexao == null) conexao = "Server=localhost;Database=api_cdf-radar;Uid=root;Pwd=root;";
         optionsBuilder.UseMySql(conexao, ServerVersion.AutoDetect(conexao));
     }
 
-    public DbSet<Campanha> Produtos { get; set; } = default!;
+    public DbSet<Cliente> Clientes { get; set; } = default!;
+    public DbSet<Produto> Produtos { get; set; } = default!;
+    public DbSet<Campanha> Campanhas { get; set; } = default!;
     public DbSet<Cliente> Veiculos { get; set; } = default!;
     public DbSet<Endereco> Enderecos { get; set; } = default!;
-    public DbSet<Loja> Loja { get; set; } = default!;
-    public DbSet<Pedido> Pedido { get; set; } = default!;
-    public DbSet<PedidoProduto> PedidoProduto { get; set; } = default!;
-    public DbSet<PosicoesProduto> PosicoesProduto { get; set; } = default!;
+    public DbSet<Loja> Lojas { get; set; } = default!;
+    public DbSet<Pedido> Pedidos { get; set; } = default!;
+    public DbSet<PedidoProduto> PedidosProdutos { get; set; } = default!;
+    public DbSet<PosicoesProduto> PosicoesProdutos { get; set; } = default!;
     public DbSet<Usuario> Usuarios { get; set; } = default!;
 } 

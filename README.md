@@ -1,4 +1,4 @@
-# API - Projeto Radar
+# API - Projeto Radar - Código do Futuro
 
 <div align="center">
 
@@ -24,16 +24,65 @@
         </sub>
       </a>
     </td>
+    <td align="center">
+      <a href="https://github.com/bruno-esilva">
+        <img src="https://avatars.githubusercontent.com/u/48297443?v=4" width="100px;" alt="Foto do Bruno Silva"/><br>
+        <sub>
+          <b>Bruno Ernandes da Silva</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Rfalcao11">
+        <img src="https://avatars.githubusercontent.com/u/87043908?v=4" width="100px;" alt="Foto do Rafael Falcão "/><br>
+        <sub>
+          <b>Rafael Falcão</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/luisedu24">
+        <img src="https://avatars.githubusercontent.com/u/117494775?v=4" width="100px;" alt="Foto do Luis Eduardo "/><br>
+        <sub>
+          <b>Luis Eduardo</b>
+        </sub>
+      </a>
+    </td>
     </tr>
 </table>
 
 <hr>
 
-## Projeto Integrador Código do Futuro
+## DESENVOLVEDORES
+
+- **INCLUIR PASSWORD NA STRING DE CONEÃO!**
+- Rodar migration para criação do banco:
+  - `dotnet ef migrations add MinhaMigracao`
+  - `dotnet ef database update`
 
 ### Desafio
 
 ### Solução
+
+#### :star: Criação dos EndPoints
+
+- [x] `/principal`
+- [x] `/login`
+- [x] `/usuarios` **Passar para administrador ?**
+- [x] `/clientes`
+- [x] `/enderecos`
+- [x] `/lojas`
+- [x] `/pedidos`
+- [x] `/pedidos-produtos`
+- [x] `/posicoes-produtos`
+
+#### :star: Criação dos Serviços
+
+- [x] Autenticação com JWT
+- [x] Hash de para armazenar senha criptografada no banco de dados
+- [x] `Builder` de instância - *conversor de DTO para a "instância original"*
+- [ ] Busca de endereço consumindo API VIA CEP  
+
 
 *Controllers*
 - recebe contexto por **injeção de dependência**
@@ -46,4 +95,70 @@
 - **Pacotes**
 - [SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)
 
-dotnet aspnet-codegenerator controller -name UsuariosController -async -api -m Usuario -dc ContextEntity -outDir Controllers
+Scaffold para geração de Controlers
+`dotnet aspnet-codegenerator controller -name UsuariosController -async -api -m Usuario -dc ContextEntity -outDir Controllers`
+
+:star: Ideias para implementar
+
+- [ ] `[Table("administradores")]` -annotation
+- [ ] `public Administrador()
+    {
+        this.DataCriacao = DateTime.Now;
+    }` - inicializar DateTime pelo construtor
+- [ ] ` [Required(ErrorMessage = "Nome é obrigatório")][MaxLength(100)]
+    public string Nome { get;set; } = default!;` 
+- [ ] `[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get;set; }`
+- [ ] `var ret = this.dbContexto.SaveChanges();
+        if(ret != 1) throw new Exception("Não foi possivel salvar o dado no banco");
+        await Task.FromResult(ret);` - confirmação do SaveChange ?
+
+**Paginação**
+
+```c#
+//GET: Pedidos
+        public async Task<IActionResult> Index(int page = 1)
+        {
+            var take = 5;
+            var skip = take * (page - 1);
+
+             var marcas =  await Task.FromResult(
+                (
+                    from marca in _context.Marcas
+                    join modelo in _context.Modelos on marca.Id equals modelo.MarcaId into MarcaModeloLeft
+                    from subMarcaModelo in MarcaModeloLeft.DefaultIfEmpty()
+                    where marca.Nome.Contains("m")
+                    select new {
+                        Id = marca.Id,
+                        Nome = marca.Nome
+                    }
+                ).Skip(skip).Take(take) // calculado
+                // ).Skip(0).Take(5) // pagina 1
+                // ).Skip(5).Take(5) // pagina 2
+                // ).Skip(10).Take(5) // pagina 3
+            );
+```
+
+**Modelo de query para Pedidos**
+
+```c#
+    // ==== link to sql
+            var pedidos =  await Task.FromResult(
+                (
+                    from ped in _context.Pedidos
+                    join cli in _context.Clientes on ped.ClienteId equals cli.Id
+                    join car in _context.Carros on ped.CarroId equals car.Id
+                    join mod in _context.Modelos on car.ModeloId equals mod.Id
+                    join mar in _context.Marcas on mod.MarcaId equals mar.Id
+                    select new PedidoResumido {
+                        PedidoId = ped.Id,
+                        NomeCliente = cli.Nome,
+                        NomeCarro = car.Nome,
+                        ModeloDoCarro = mod.Nome,
+                        MarcaDoCarro = mar.Nome,
+                        DataLocacaoPedido = ped.DataLocacao,
+                        DataEntregaPedido = ped.DataEntrega
+                    }
+                )
+            );
+```
