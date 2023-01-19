@@ -1,3 +1,4 @@
+using cdf_api_integrador.Model;
 using cdf_api_integrador.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +16,8 @@ public class ContextEntity : DbContext
         optionsBuilder.UseMySql(conexao, ServerVersion.AutoDetect(conexao));
     }
 
-    public DbSet<Campanha> Produtos { get; set; } = default!;
+    public DbSet<Produto> Produtos { get; set; } = default!;
+    public DbSet<Campanha> Campanhas { get; set; } = default!;
     public DbSet<Cliente> Veiculos { get; set; } = default!;
     public DbSet<Endereco> Enderecos { get; set; } = default!;
     public DbSet<Loja> Loja { get; set; } = default!;
