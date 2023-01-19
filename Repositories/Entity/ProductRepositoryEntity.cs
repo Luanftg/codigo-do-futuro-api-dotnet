@@ -1,7 +1,4 @@
-
-
-using cdf_api_integrador.Model;
-using cdf_api_integrador.Repositories.Entity;
+using cdf_api_integrador.Models;
 using cdf_api_integrador.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
 

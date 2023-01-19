@@ -1,10 +1,10 @@
 using cdf_api_integrador.DTOs;
-using cdf_api_integrador.Model;
 using cdf_api_integrador.Models;
 using cdf_api_integrador.Repositories.Interface;
 using cdf_api_integrador.Services;
 using Microsoft.AspNetCore.Mvc;
 
+[Route("produto")]
 public class ProdutoController : ControllerBase
 {
     private IRepository<Produto> _repository;

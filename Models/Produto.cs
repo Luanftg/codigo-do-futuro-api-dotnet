@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace cdf_api_integrador.Model;
+namespace cdf_api_integrador.Models;
 
 public record Produto
 {
