@@ -3,15 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace cdf_api_integrador.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("")]
     [ApiController]
     public class PrincipalController : ControllerBase
     {
         // Post: Administrador
-        [HttpPost]
+        [HttpGet]
         public IActionResult Index()
         {
-            return StatusCode(200, new Home{Message =  "Bem vindo a API Radar - Código do Futuro - grupo 2"});
+            return StatusCode(200, new Home{Message =  "Bem vindo a API Radar - Código do Futuro - digite: '/swagger na url para acessar um modelo de visualização da API'"});
         }
 
     }     
