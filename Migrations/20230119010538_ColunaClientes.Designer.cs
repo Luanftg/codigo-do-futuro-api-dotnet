@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using cdf_api_integrador.Repositories.Entity;
 
@@ -10,9 +11,11 @@ using cdf_api_integrador.Repositories.Entity;
 namespace cdfapiintegrador.Migrations
 {
     [DbContext(typeof(ContextEntity))]
-    partial class ContextEntityModelSnapshot : ModelSnapshot
+    [Migration("20230119010538_ColunaClientes")]
+    partial class ColunaClientes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -207,7 +210,7 @@ namespace cdfapiintegrador.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("pedidos-produtos");
+                    b.ToTable("PedidoProdutos");
                 });
 
             modelBuilder.Entity("cdf_api_integrador.Models.PosicoesProduto", b =>
@@ -230,7 +233,7 @@ namespace cdfapiintegrador.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("posicoes-produtos");
+                    b.ToTable("PosicoesProdutos");
                 });
 
             modelBuilder.Entity("cdf_api_integrador.Models.Usuario", b =>
