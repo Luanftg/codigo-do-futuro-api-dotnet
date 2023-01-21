@@ -29,7 +29,7 @@ using Microsoft.AspNetCore.Mvc;
             return StatusCode(200, campanha);
         }
         
-        // Post: Veiculos
+        // Post: Campanhas
         // [Logged]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CampaingDTO campaingDTO)
@@ -39,7 +39,7 @@ using Microsoft.AspNetCore.Mvc;
             return StatusCode(201, campanha);
         }
         
-        // Put: Veiculos
+        // Put: Campanhas
         // [Logged]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Campanha campanha)
@@ -47,14 +47,14 @@ using Microsoft.AspNetCore.Mvc;
 
             if(id != campanha.Id)
             {
-                return StatusCode(400, new {Mensagem = "O Id do veículo precisa coincidir com o id passado pela url"});
+                return StatusCode(400, new {Mensagem = "O Id da campanha precisa coincidir com o id passado pela url"});
             }
             
             await _repository.AtualizarAsync(campanha);
             return StatusCode(200, campanha);
         }
         
-        // Delete: Veiculos
+        // Delete: Campanhas
         // [Logged]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
@@ -64,7 +64,7 @@ using Microsoft.AspNetCore.Mvc;
 
             if(campanha is null)
             {
-                return StatusCode(404, new {Mensagem = "A campanha informado não existe na base de dados"});
+                return StatusCode(404, new {Mensagem = "A campanha informada não existe na base de dados"});
             }
             
             await _repository.ApagarAsync(campanha);
