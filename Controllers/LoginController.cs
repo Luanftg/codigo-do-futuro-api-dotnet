@@ -27,22 +27,23 @@ namespace cdf_api_integrador.Controllers
 
         // Post: Administrador
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] UserLoginDTO userDTO)
+        public async Task<IActionResult> Login([FromBody] UserLoginDTO userLoginDTO)
         {
-           if(string.IsNullOrEmpty(userDTO.Email) || string.IsNullOrEmpty(userDTO.Senha))
-            return StatusCode(400, new {
-                Mensagem = "Preencha o email e a senha"
+            if(string.IsNullOrEmpty(userLoginDTO.Email) || string.IsNullOrEmpty(userLoginDTO.Senha))
+                return StatusCode(400, new {
+                    Mensagem = "Preencha o email e a senha"
             });
 
-        var user = await _repository.Login(userDTO.Email, userDTO.Senha);
-        if(user is null)
-            return StatusCode(404, new {
-                Mensagem = "Usuario ou senha não encontrado em nossa base de dados"
+            var user = await _repository.Login(userLoginDTO.Email, userLoginDTO.Senha);
+            
+            if(user is null)
+                return StatusCode(404, new {
+                    Mensagem = "Usuario ou senha não encontrado em nossa base de dados"
             });
 
-        var userLogged = BuilderService<UserLogged>.Builder(user);
-        userLogged.Token = TokenJWT.Builder(userLogged);
-        return StatusCode(200, userLogged);
+            var userLogged = BuilderService<UserLogged>.Builder(user);
+            userLogged.Token = TokenJWT.Builder(userLogged);
+            return StatusCode(200, userLogged);
         }
 
     }     

@@ -13,8 +13,6 @@ public class UserRepositoryEntity : IRepositoryUser<Usuario>
         context = new ContextEntity();
     }
 
-    //private string? conexao = null;
-
     public async Task<List<Usuario>> TodosAsync()
     {
         return await context.Usuarios.ToListAsync();

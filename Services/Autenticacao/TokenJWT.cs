@@ -6,15 +6,15 @@ namespace cdf_api_integrador.Services.Autenticacao;
 
 public class TokenJWT
 {
-    public static string Builder(UserLogged AdministradorLogado)
+    public static string Builder(UserLogged userLogged)
     {
         var key = "SEGREDO_do_CoDigoDO-Futuro";
 
         var payload = new UserJwtDTO
         {
-           Id = AdministradorLogado.Id,
-           Email = AdministradorLogado.Email,
-           Regra = AdministradorLogado.Regra,
+           Id = userLogged.Id,
+           Email = userLogged.Email,
+           Regra = userLogged.Regra,
            Expiracao = DateTime.Now.AddDays(2)
         };
 
