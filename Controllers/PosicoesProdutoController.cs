@@ -4,7 +4,7 @@ using cdf_api_integrador.Repositories.Interface;
 using cdf_api_integrador.Services;
 using Microsoft.AspNetCore.Mvc;
 
-[Route("posicoes-produto")]
+[Route("[controller]")]
 public class PosicoesProdutoController : ControllerBase
 {
     private IRepository<PosicoesProduto> _repository;
@@ -14,7 +14,7 @@ public class PosicoesProdutoController : ControllerBase
     }
     // GET: Veiculos
     // [Logged]
-    [HttpGet("/posicoes-produto")]
+    [HttpGet]
     public async Task<IActionResult> Index()
     {
         var posicoesProduto = await _repository.TodosAsync();
@@ -30,7 +30,7 @@ public class PosicoesProdutoController : ControllerBase
     
     // Post: Veiculos
     // [Logged]
-    [HttpPost("/posicoes-produto")]
+    [HttpPost]
     public async Task<IActionResult> Create([FromBody] PositionProductDTO positionProductDTO)
     {
         var posicoesProduto = BuilderService<PosicoesProduto>.Builder(positionProductDTO);
@@ -40,7 +40,7 @@ public class PosicoesProdutoController : ControllerBase
     
     // Put: Veiculos
     // [Logged]
-    [HttpPut("/posicoes-produto/{id}")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] PosicoesProduto posicoesProduto)
     {
 
@@ -55,7 +55,7 @@ public class PosicoesProdutoController : ControllerBase
     
     // Delete: Veiculos
     // [Logged]
-    [HttpDelete("/posicoes-produto/{id}")]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
 

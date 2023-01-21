@@ -4,7 +4,7 @@ using cdf_api_integrador.Repositories.Interface;
 using cdf_api_integrador.Services;
 using Microsoft.AspNetCore.Mvc;
 
-[Route("produto")]
+[Route("[controller]")]
 public class ProdutoController : ControllerBase
 {
     private IRepository<Produto> _repository;
@@ -14,7 +14,7 @@ public class ProdutoController : ControllerBase
     }
     // GET: Veiculos
     // [Logged]
-    [HttpGet("/produtos")]
+    [HttpGet]
     public async Task<IActionResult> Index()
     {
         var produto = await _repository.TodosAsync();
@@ -30,7 +30,7 @@ public class ProdutoController : ControllerBase
     
     // Post: Veiculos
     // [Logged]
-    [HttpPost("/produtos")]
+    [HttpPost]
     public async Task<IActionResult> Create([FromBody] ProductDTO produtoDTO)
     {
         var produto = BuilderService<Produto>.Builder(produtoDTO);
@@ -40,7 +40,7 @@ public class ProdutoController : ControllerBase
     
     // Put: Veiculos
     // [Logged]
-    [HttpPut("/produtos/{id}")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Produto produto)
     {
 
@@ -55,7 +55,7 @@ public class ProdutoController : ControllerBase
     
     // Delete: Veiculos
     // [Logged]
-    [HttpDelete("/produtos/{id}")]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
 

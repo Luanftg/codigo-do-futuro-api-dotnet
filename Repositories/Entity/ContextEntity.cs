@@ -6,8 +6,7 @@ namespace cdf_api_integrador.Repositories.Entity;
 
 public class ContextEntity : DbContext
 {
-
-    public ContextEntity() { }
+ContextEntity() { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

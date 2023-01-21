@@ -12,7 +12,7 @@ using cdf_api_integrador.Repositories.Interface;
 
 namespace cdf_api_integrador.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class UsuariosController : ControllerBase
     {
