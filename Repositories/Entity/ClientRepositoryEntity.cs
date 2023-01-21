@@ -1,6 +1,7 @@
 using cdf_api_integrador.Models;
 using cdf_api_integrador.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace cdf_api_integrador.Repositories.Entity;
 
@@ -14,7 +15,8 @@ public class ClientRepositoryEntity : IRepository<Cliente>
 
     public async Task<List<Cliente>> TodosAsync()
     {
-        return await context.Clientes.ToListAsync();
+
+        return await context.Clientes.Include(c=> c.Endereco).ToListAsync();
     }
 
     public async Task IncluirAsync(Cliente cliente)
