@@ -1,4 +1,3 @@
-
 using cdf_api_integrador.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,7 +5,8 @@ namespace cdf_api_integrador.Repositories.Entity;
 
 public class ContextEntity : DbContext
 {
-ContextEntity() { }
+
+public ContextEntity() {}
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -25,4 +25,4 @@ ContextEntity() { }
     public DbSet<PedidoProduto> PedidosProdutos { get; set; } = default!;
     public DbSet<PosicoesProduto> PosicoesProdutos { get; set; } = default!;
     public DbSet<Usuario> Usuarios { get; set; } = default!;
-} 
+}
