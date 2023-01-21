@@ -14,6 +14,7 @@ public class ProductRepositoryEntity : IRepository<Produto>
 
     public async Task<List<Produto>> TodosAsync()
     {
+
         return await context.Produtos.ToListAsync();
     }
 

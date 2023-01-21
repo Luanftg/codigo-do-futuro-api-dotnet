@@ -12,7 +12,7 @@ public class PedidosController : ControllerBase
     {
         _repository = repository;
     }
-    // GET: Veiculos
+    // GET: Pedidos
     // [Logged]
     [HttpGet]
     public async Task<IActionResult> Index()
@@ -28,7 +28,7 @@ public class PedidosController : ControllerBase
         return StatusCode(200, pedido);
     }
     
-    // Post: Veiculos
+    // Post: Pedidos
     // [Logged]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] OrderDTO orderDTO)
@@ -38,7 +38,7 @@ public class PedidosController : ControllerBase
         return StatusCode(201, pedido);
     }
     
-    // Put: Veiculos
+    // Put: Pedidos
     // [Logged]
     [HttpPut("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Pedido pedido)
@@ -53,7 +53,7 @@ public class PedidosController : ControllerBase
         return StatusCode(200, pedido);
     }
     
-    // Delete: Veiculos
+    // Delete: Pedidos
     // [Logged]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id)

@@ -29,21 +29,23 @@ namespace cdfapiintegrador.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("Dt_Criacao")
+                    b.Property<DateTime>("DtCriacao")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("Loja_Id")
+                    b.Property<int>("LojaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Photo_Url")
+                    b.Property<string>("PhotoUrl")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LojaId");
 
                     b.ToTable("Campanhas");
                 });
@@ -77,7 +79,7 @@ namespace cdfapiintegrador.Migrations
 
                     b.HasIndex("EnderecoId");
 
-                    b.ToTable("Cliente");
+                    b.ToTable("clientes");
                 });
 
             modelBuilder.Entity("cdf_api_integrador.Models.Endereco", b =>
@@ -151,7 +153,7 @@ namespace cdfapiintegrador.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Cliente_Id")
+                    b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DtCriacao")
@@ -162,6 +164,8 @@ namespace cdfapiintegrador.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClienteId");
+
                     b.ToTable("Pedidos");
                 });
 
@@ -171,10 +175,10 @@ namespace cdfapiintegrador.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Pedido_Id")
+                    b.Property<int>("PedidoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Produto_Id")
+                    b.Property<int>("ProdutoId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantidade")
@@ -185,6 +189,10 @@ namespace cdfapiintegrador.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PedidoId");
+
+                    b.HasIndex("ProdutoId");
+
                     b.ToTable("pedidos-produtos");
                 });
 
@@ -194,7 +202,7 @@ namespace cdfapiintegrador.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Campanha_Id")
+                    b.Property<int>("CampanhaId")
                         .HasColumnType("int");
 
                     b.Property<int>("PosicaoX")
@@ -203,10 +211,14 @@ namespace cdfapiintegrador.Migrations
                     b.Property<int>("PosicaoY")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Produto_Id")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CampanhaId");
+
+                    b.HasIndex("ProdutoId");
 
                     b.ToTable("posicoes-produtos");
                 });
@@ -263,6 +275,17 @@ namespace cdfapiintegrador.Migrations
                     b.ToTable("Usuarios");
                 });
 
+            modelBuilder.Entity("cdf_api_integrador.Models.Campanha", b =>
+                {
+                    b.HasOne("cdf_api_integrador.Models.Loja", "loja")
+                        .WithMany()
+                        .HasForeignKey("LojaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("loja");
+                });
+
             modelBuilder.Entity("cdf_api_integrador.Models.Cliente", b =>
                 {
                     b.HasOne("cdf_api_integrador.Models.Endereco", "Endereco")
@@ -283,6 +306,55 @@ namespace cdfapiintegrador.Migrations
                         .IsRequired();
 
                     b.Navigation("Endereco");
+                });
+
+            modelBuilder.Entity("cdf_api_integrador.Models.Pedido", b =>
+                {
+                    b.HasOne("cdf_api_integrador.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("cdf_api_integrador.Models.PedidoProduto", b =>
+                {
+                    b.HasOne("cdf_api_integrador.Models.Pedido", "Pedido")
+                        .WithMany()
+                        .HasForeignKey("PedidoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("cdf_api_integrador.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pedido");
+
+                    b.Navigation("Produto");
+                });
+
+            modelBuilder.Entity("cdf_api_integrador.Models.PosicoesProduto", b =>
+                {
+                    b.HasOne("cdf_api_integrador.Models.Campanha", "Campanha")
+                        .WithMany()
+                        .HasForeignKey("CampanhaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("cdf_api_integrador.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Campanha");
+
+                    b.Navigation("Produto");
                 });
 #pragma warning restore 612, 618
         }
