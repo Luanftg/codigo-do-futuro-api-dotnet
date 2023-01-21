@@ -14,15 +14,15 @@ public class ProdutosController : ControllerBase
         _repository = repository;
     }
     // GET: Produtos
-    [Logged]
+    // [Logged]
     [HttpGet]
     public async Task<IActionResult> Index()
     {
         var produto = await _repository.TodosAsync();
         return StatusCode(200, produto);
     }
-    [Logged]
-     [HttpGet("{id}")]
+    // [Logged]
+    [HttpGet("{id}")]
     public async Task<IActionResult> Details([FromRoute] int id)
     {
         var produto = (await _repository.TodosAsync()).Find(c => c.Id == id);
