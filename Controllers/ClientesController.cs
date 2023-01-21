@@ -21,7 +21,7 @@ public class ClientesController : ControllerBase
         return StatusCode(200, cliente);
     }
 
-     [HttpGet("{id}")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> Details([FromRoute] int id)
     {
         var cliente = (await _repository.TodosAsync()).Find(c => c.Id == id);
