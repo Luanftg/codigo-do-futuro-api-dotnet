@@ -1,7 +1,4 @@
-
-
 using cdf_api_integrador.Models;
-
 using cdf_api_integrador.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +14,7 @@ public class CampainRepositoryEntity : IRepository<Campanha>
 
     public async Task<List<Campanha>> TodosAsync()
     {
-        return await context.Campanhas.ToListAsync();
+        return await context.Campanhas.Include(c=>c.loja).ToListAsync();
     }
 
     public async Task IncluirAsync(Campanha campanha)

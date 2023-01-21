@@ -17,7 +17,7 @@ public class StoreRepositoryEntity : IRepository<Loja>
 
     public async Task<List<Loja>> TodosAsync()
     {
-        return await context.Lojas.ToListAsync();
+        return await context.Lojas.Include(l=> l.Endereco).ToListAsync();
     }
 
     public async Task IncluirAsync(Loja loja)

@@ -15,7 +15,7 @@ public class PositionProductRepositoryEntity : IRepository<PosicoesProduto>
 
     public async Task<List<PosicoesProduto>> TodosAsync()
     {
-        return await context.PosicoesProdutos.ToListAsync();
+        return await context.PosicoesProdutos.Include(p=>p.Campanha).Include(p=>p.Produto).ToListAsync();
     }
 
     public async Task IncluirAsync(PosicoesProduto posicoesProduto)

@@ -64,6 +64,9 @@
 
 ### Solução
 
+- Diagrama de Relacionamentos das entidades
+![Alt text](abstraction.png)
+
 #### :star: Criação dos EndPoints
 
 - [x] `/principal`

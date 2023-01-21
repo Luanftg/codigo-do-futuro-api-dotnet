@@ -15,7 +15,7 @@ public class OrderProductRepositoryEntity : IRepository<PedidoProduto>
 
     public async Task<List<PedidoProduto>> TodosAsync()
     {
-        return await context.PedidosProdutos.ToListAsync();
+        return await context.PedidosProdutos.Include(p=>p.Pedido).Include(p=>p.Produto).ToListAsync();
     }
 
     public async Task IncluirAsync(PedidoProduto pedidoProduto)

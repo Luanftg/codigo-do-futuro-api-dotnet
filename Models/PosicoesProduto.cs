@@ -8,8 +8,10 @@ public record PosicoesProduto
 {
     [Key]
     public int Id {get;set;}= default!;
-    public int Campanha_Id {get;set;} = default!;
-    public decimal Produto_Id {get;set;} = default!;
+    public int CampanhaId {get;set;} = default!;
+    public Campanha? Campanha {get;set;}
+    public int ProdutoId {get;set;} = default!;
+    public Produto? Produto {get;set;}
     public int PosicaoX {get;set;} = default!;
     public int PosicaoY {get;set;} = default!;
 

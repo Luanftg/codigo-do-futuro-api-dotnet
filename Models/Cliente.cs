@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace cdf_api_integrador.Models;
 
+[Table("clientes")]
 public record Cliente
 {
     [Key]
@@ -10,5 +12,6 @@ public record Cliente
     public string Telefone {get;set;} = default!;
     public string Email {get;set;} = default!;
     public string Cpf {get;set;} = default!;
-    public string Endereco_Id {get;set;}= default!;
+    public int EnderecoId {get;set;}= default!;
+    public Endereco? Endereco {get;set;}
 }
