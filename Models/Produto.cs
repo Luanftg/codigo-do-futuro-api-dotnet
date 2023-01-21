@@ -10,5 +10,5 @@ public record Produto
     public string Descricao {get;set;} = default!;
     public decimal Valor {get;set;} = default!;
     public int QtdEstoque {get;set;} = default!;
-
+    public string PhotoUrl {get;set;} =default!;
 }
