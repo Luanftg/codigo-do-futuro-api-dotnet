@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using cdf_api_integrador.Repositories.Entity;
 
@@ -10,9 +11,11 @@ using cdf_api_integrador.Repositories.Entity;
 namespace cdfapiintegrador.Migrations
 {
     [DbContext(typeof(ContextEntity))]
-    partial class ContextEntityModelSnapshot : ModelSnapshot
+    [Migration("20230121153125_AtualizaModelsComChaveEstrangeira")]
+    partial class AtualizaModelsComChaveEstrangeira
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,7 +82,7 @@ namespace cdfapiintegrador.Migrations
 
                     b.HasIndex("EnderecoId");
 
-                    b.ToTable("clientes");
+                    b.ToTable("Cliente");
                 });
 
             modelBuilder.Entity("cdf_api_integrador.Models.Endereco", b =>
@@ -211,14 +214,17 @@ namespace cdfapiintegrador.Migrations
                     b.Property<int>("PosicaoY")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProdutoId")
+                    b.Property<decimal>("ProdutoId")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int?>("ProdutoId1")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CampanhaId");
 
-                    b.HasIndex("ProdutoId");
+                    b.HasIndex("ProdutoId1");
 
                     b.ToTable("posicoes-produtos");
                 });
@@ -348,9 +354,7 @@ namespace cdfapiintegrador.Migrations
 
                     b.HasOne("cdf_api_integrador.Models.Produto", "Produto")
                         .WithMany()
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProdutoId1");
 
                     b.Navigation("Campanha");
 
