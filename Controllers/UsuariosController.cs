@@ -9,6 +9,7 @@ using cdf_api_integrador.Models;
 using cdf_api_integrador.Repositories.Entity;
 using cdf_api_integrador.Services;
 using cdf_api_integrador.Repositories.Interface;
+using cdf_api_integrador.Filters;
 
 namespace cdf_api_integrador.Controllers
 {
@@ -22,7 +23,8 @@ namespace cdf_api_integrador.Controllers
         {
             _repository = repository;
         }
-
+        
+        [Logged]
         // GET: api/Usuarios
         [HttpGet]
         public async Task<ActionResult> Index()
@@ -31,6 +33,7 @@ namespace cdf_api_integrador.Controllers
             return StatusCode(200, users);
         }
 
+        [Logged]
         // PUT: api/Usuarios/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -45,7 +48,7 @@ namespace cdf_api_integrador.Controllers
         return StatusCode(200, usuario);
     
         }
-
+        [Logged]
         // Post: Administrador
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] UserDTO userDTO)
@@ -54,7 +57,7 @@ namespace cdf_api_integrador.Controllers
             await _repository.IncluirAsync(user);
             return StatusCode(201, user);
         }
-
+        [Logged]
         // DELETE: api/Usuarios/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute]int id)

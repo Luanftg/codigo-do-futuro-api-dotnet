@@ -1,4 +1,5 @@
 using cdf_api_integrador.DTOs;
+using cdf_api_integrador.Filters;
 using cdf_api_integrador.Models;
 using cdf_api_integrador.Repositories.Interface;
 using cdf_api_integrador.Services;
@@ -12,8 +13,8 @@ public class PedidoProdutoController : ControllerBase
     {
         _repository = repository;
     }
-    // GET: Veiculos
-    // [Logged]
+    // GET: PedidoProdutos
+    [Logged]
     [HttpGet]
     public async Task<IActionResult> Index()
     {
@@ -28,8 +29,8 @@ public class PedidoProdutoController : ControllerBase
         return StatusCode(200, pedidoProduto);
     }
     
-    // Post: Veiculos
-    // [Logged]
+    // Post: PedidoProdutos
+    [Logged]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] OrderProductDTO orderProductDTO)
     {
@@ -38,8 +39,8 @@ public class PedidoProdutoController : ControllerBase
         return StatusCode(201, pedidoProduto);
     }
     
-    // Put: Veiculos
-    // [Logged]
+    // Put: PedidoProdutos
+    [Logged]
     [HttpPut("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] PedidoProduto pedidoProduto)
     {
@@ -53,8 +54,8 @@ public class PedidoProdutoController : ControllerBase
         return StatusCode(200, pedidoProduto);
     }
     
-    // Delete: Veiculos
-    // [Logged]
+    // Delete: PedidoProdutos
+    [Logged]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {

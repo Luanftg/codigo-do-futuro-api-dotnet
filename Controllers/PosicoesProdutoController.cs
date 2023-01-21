@@ -1,4 +1,5 @@
 using cdf_api_integrador.DTOs;
+using cdf_api_integrador.Filters;
 using cdf_api_integrador.Models;
 using cdf_api_integrador.Repositories.Interface;
 using cdf_api_integrador.Services;
@@ -13,14 +14,15 @@ public class PosicoesProdutoController : ControllerBase
         _repository = repository;
     }
     // GET: PosicoesProdutos
-    // [Logged]
+    [Logged]
     [HttpGet]
     public async Task<IActionResult> Index()
     {
         var posicoesProduto = await _repository.TodosAsync();
         return StatusCode(200, posicoesProduto);
     }
-
+    
+    [Logged]
     [HttpGet("{id}")]
     public async Task<IActionResult> Details([FromRoute] int id)
     {
@@ -29,7 +31,7 @@ public class PosicoesProdutoController : ControllerBase
     }
     
     // Post: PosicoesProdutos
-    // [Logged]
+    [Logged]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] PositionProductDTO positionProductDTO)
     {
@@ -39,7 +41,7 @@ public class PosicoesProdutoController : ControllerBase
     }
     
     // Put: PosicoesProdutos
-    // [Logged]
+    [Logged]
     [HttpPut("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] PosicoesProduto posicoesProduto)
     {
@@ -54,7 +56,7 @@ public class PosicoesProdutoController : ControllerBase
     }
     
     // Delete: PosicoesProdutos
-    // [Logged]
+    [Logged]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {

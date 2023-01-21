@@ -1,5 +1,5 @@
 using cdf_api_integrador.DTOs;
-
+using cdf_api_integrador.Filters;
 using cdf_api_integrador.Models;
 using cdf_api_integrador.Repositories.Interface;
 using cdf_api_integrador.Services;
@@ -13,15 +13,15 @@ public class EnderecosController : ControllerBase
     {
         _repository = repository;
     }
-    // GET: Veiculos
-    // [Logged]
+    // GET: Enderecos
+    [Logged]
     [HttpGet]
     public async Task<IActionResult> Index()
     {
         var endereco = await _repository.TodosAsync();
         return StatusCode(200, endereco);
     }
-
+    [Logged]
     [HttpGet("{id}")]
     public async Task<IActionResult> Details([FromRoute] int id)
     {
@@ -29,8 +29,8 @@ public class EnderecosController : ControllerBase
         return StatusCode(200, endereco);
     }
     
-    // Post: Veiculos
-    // [Logged]
+    // Post: Enderecos
+    [Logged]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] AdressDTO addressDTO)
     {
@@ -39,8 +39,8 @@ public class EnderecosController : ControllerBase
         return StatusCode(201, endereco);
     }
     
-    // Put: Veiculos
-    // [Logged]
+    // Put: Enderecos
+    [Logged]
     [HttpPut("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Endereco endereco)
     {
@@ -54,8 +54,8 @@ public class EnderecosController : ControllerBase
         return StatusCode(200, endereco);
     }
     
-    // Delete: Veiculos
-    // [Logged]
+    // Delete: Enderecos
+    [Logged]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {

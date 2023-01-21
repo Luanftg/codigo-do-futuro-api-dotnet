@@ -1,4 +1,5 @@
 using cdf_api_integrador.DTOs;
+using cdf_api_integrador.Filters;
 using cdf_api_integrador.Models;
 using cdf_api_integrador.Repositories.Interface;
 using cdf_api_integrador.Services;
@@ -12,8 +13,8 @@ public class ClientesController : ControllerBase
     {
         _repository = repository;
     }
-    // GET: Veiculos
-    // [Logged]
+    // GET: Clientes
+    [Logged]
     [HttpGet]
     public async Task<IActionResult> Index()
     {
@@ -21,6 +22,7 @@ public class ClientesController : ControllerBase
         return StatusCode(200, cliente);
     }
 
+    [Logged]
     [HttpGet("{id}")]
     public async Task<IActionResult> Details([FromRoute] int id)
     {
@@ -28,8 +30,8 @@ public class ClientesController : ControllerBase
         return StatusCode(200, cliente);
     }
     
-    // Post: Veiculos
-    // [Logged]
+    // Post: Clientes
+    [Logged]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] ClientDTO clientDTO)
     {
@@ -38,8 +40,8 @@ public class ClientesController : ControllerBase
         return StatusCode(201, cliente);
     }
     
-    // Put: Veiculos
-    // [Logged]
+    // Put: Clientes
+    [Logged]
     [HttpPut("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Cliente cliente)
     {
@@ -53,8 +55,8 @@ public class ClientesController : ControllerBase
         return StatusCode(200, cliente);
     }
     
-    // Delete: Veiculos
-    // [Logged]
+    // Delete: Clientes
+    [Logged]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
