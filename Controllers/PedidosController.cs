@@ -1,4 +1,5 @@
 using cdf_api_integrador.DTOs;
+using cdf_api_integrador.Filters;
 using cdf_api_integrador.Models;
 using cdf_api_integrador.Repositories.Interface;
 using cdf_api_integrador.Services;
@@ -13,14 +14,14 @@ public class PedidosController : ControllerBase
         _repository = repository;
     }
     // GET: Pedidos
-    // [Logged]
+    [Logged]
     [HttpGet]
     public async Task<IActionResult> Index()
     {
         var pedido = await _repository.TodosAsync();
         return StatusCode(200, pedido);
     }
-
+    [Logged]
     [HttpGet("{id}")]
     public async Task<IActionResult> Details([FromRoute] int id)
     {
@@ -29,7 +30,7 @@ public class PedidosController : ControllerBase
     }
     
     // Post: Pedidos
-    // [Logged]
+    [Logged]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] OrderDTO orderDTO)
     {
@@ -39,7 +40,7 @@ public class PedidosController : ControllerBase
     }
     
     // Put: Pedidos
-    // [Logged]
+    [Logged]
     [HttpPut("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Pedido pedido)
     {
@@ -54,7 +55,7 @@ public class PedidosController : ControllerBase
     }
     
     // Delete: Pedidos
-    // [Logged]
+    [Logged]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {

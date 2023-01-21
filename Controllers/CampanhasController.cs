@@ -17,13 +17,14 @@ using Microsoft.AspNetCore.Mvc;
         }
 
         // GET: api/Campanha
+        [Logged]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var campanha = await _repository.TodosAsync();
             return StatusCode(200, campanha);
         }
-
+        [Logged]
         [HttpGet("{id}")]
         public async Task<IActionResult> Details([FromRoute] int id)
         {
@@ -31,7 +32,7 @@ using Microsoft.AspNetCore.Mvc;
             return StatusCode(200, campanha);
         }
         
-        // Post: Veiculos
+        // Post: Campanhas
         [Logged]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CampaingDTO campaingDTO)
@@ -42,7 +43,7 @@ using Microsoft.AspNetCore.Mvc;
         }
         
         // Put: Campanhas
-        // [Logged]
+        [Logged]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Campanha campanha)
         {
@@ -56,7 +57,7 @@ using Microsoft.AspNetCore.Mvc;
             return StatusCode(200, campanha);
         }
         
-        // Delete: Veiculos
+        // Delete: Campanhas
         [Logged]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)

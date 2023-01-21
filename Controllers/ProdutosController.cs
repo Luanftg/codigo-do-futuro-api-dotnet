@@ -1,4 +1,5 @@
 using cdf_api_integrador.DTOs;
+using cdf_api_integrador.Filters;
 using cdf_api_integrador.Models;
 using cdf_api_integrador.Repositories.Interface;
 using cdf_api_integrador.Services;
@@ -12,15 +13,15 @@ public class ProdutosController : ControllerBase
     {
         _repository = repository;
     }
-    // GET: Veiculos
-    // [Logged]
+    // GET: Produtos
+    [Logged]
     [HttpGet]
     public async Task<IActionResult> Index()
     {
         var produto = await _repository.TodosAsync();
         return StatusCode(200, produto);
     }
-
+    [Logged]
      [HttpGet("{id}")]
     public async Task<IActionResult> Details([FromRoute] int id)
     {
@@ -28,7 +29,7 @@ public class ProdutosController : ControllerBase
         return StatusCode(200, produto);
     }
     
-    // Post: Veiculos
+    // Post: Produtos
     // [Logged]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] ProductDTO produtoDTO)
@@ -38,7 +39,7 @@ public class ProdutosController : ControllerBase
         return StatusCode(201, produto);
     }
     
-    // Put: Veiculos
+    // Put: Produtos
     // [Logged]
     [HttpPut("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Produto produto)
@@ -53,12 +54,11 @@ public class ProdutosController : ControllerBase
         return StatusCode(200, produto);
     }
     
-    // Delete: Veiculos
+    // Delete: Produtos
     // [Logged]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
-
         var produto = (await _repository.TodosAsync()).Find(v=>v.Id ==id);
 
         if(produto is null)
