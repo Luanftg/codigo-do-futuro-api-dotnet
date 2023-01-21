@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using cdf_api_integrador.Repositories.Entity;
 
@@ -10,9 +11,11 @@ using cdf_api_integrador.Repositories.Entity;
 namespace cdfapiintegrador.Migrations
 {
     [DbContext(typeof(ContextEntity))]
-    partial class ContextEntityModelSnapshot : ModelSnapshot
+    [Migration("20230121140436_EnderecoIdInt")]
+    partial class EnderecoIdInt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,7 +128,7 @@ namespace cdfapiintegrador.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("EnderecoId")
+                    b.Property<int>("Endereco_id")
                         .HasColumnType("int");
 
                     b.Property<string>("Latitude")
@@ -139,8 +142,6 @@ namespace cdfapiintegrador.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EnderecoId");
 
                     b.ToTable("Lojas");
                 });
@@ -264,17 +265,6 @@ namespace cdfapiintegrador.Migrations
                 });
 
             modelBuilder.Entity("cdf_api_integrador.Models.Cliente", b =>
-                {
-                    b.HasOne("cdf_api_integrador.Models.Endereco", "Endereco")
-                        .WithMany()
-                        .HasForeignKey("EnderecoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Endereco");
-                });
-
-            modelBuilder.Entity("cdf_api_integrador.Models.Loja", b =>
                 {
                     b.HasOne("cdf_api_integrador.Models.Endereco", "Endereco")
                         .WithMany()
