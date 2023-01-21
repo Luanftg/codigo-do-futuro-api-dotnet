@@ -1,18 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using cdf_api_integrador.Models;
-using cdf_api_integrador.Repositories.Entity;
 using cdf_api_integrador.Repositories.Interface;
 using cdf_api_integrador.Services;
+using Microsoft.AspNetCore.Mvc;
 
-namespace cdf_api_integrador.Controllers
-{
-    [Route("[controller]")]
+[Route("[controller]")]
     [ApiController]
     public class CampanhasController : ControllerBase
     {
@@ -80,4 +71,3 @@ namespace cdf_api_integrador.Controllers
             return StatusCode(204);
         }
     }
-}

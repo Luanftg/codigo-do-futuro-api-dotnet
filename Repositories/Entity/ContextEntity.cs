@@ -1,4 +1,3 @@
-
 using cdf_api_integrador.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,12 +6,12 @@ namespace cdf_api_integrador.Repositories.Entity;
 public class ContextEntity : DbContext
 {
 
-    public ContextEntity() { }
+public ContextEntity() {}
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         var conexao = Environment.GetEnvironmentVariable("DATABASE_CDF");
-        if(conexao == null) conexao = "Server=localhost;Database=api_cdf-radar;Uid=root;Pwd=root;";
+        if(conexao == null) conexao = "Server=localhost;Database=api_cdf-radar;Uid=root;Pwd=SUA SENHA AQUI;";
         optionsBuilder.UseMySql(conexao, ServerVersion.AutoDetect(conexao));
     }
 
@@ -26,4 +25,4 @@ public class ContextEntity : DbContext
     public DbSet<PedidoProduto> PedidosProdutos { get; set; } = default!;
     public DbSet<PosicoesProduto> PosicoesProdutos { get; set; } = default!;
     public DbSet<Usuario> Usuarios { get; set; } = default!;
-} 
+}
