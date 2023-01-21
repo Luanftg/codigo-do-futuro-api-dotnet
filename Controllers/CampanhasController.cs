@@ -1,124 +1,72 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using cdf_api_integrador.DTOs;
 using cdf_api_integrador.Models;
-using cdf_api_integrador.Repositories.Entity;
+using cdf_api_integrador.Repositories.Interface;
+using cdf_api_integrador.Services;
+using Microsoft.AspNetCore.Mvc;
 
-namespace cdf_api_integrador.Controllers
+[Route("campanha")]
+public class CampanhasController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CampanhaController : ControllerBase
+    private IRepository<Campanha> _repository;
+    public CampanhasController(IRepository<Campanha> repository)
     {
-        private readonly ContextEntity _context;
+        _repository = repository;
+    }
+    // GET: Campanha
+    // [Logged]
+    [HttpGet("/campanha")]
+    public async Task<IActionResult> Index()
+    {
+        var campanha = await _repository.TodosAsync();
+        return StatusCode(200, campanha);
+    }
 
-        public CampanhaController(ContextEntity context)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Details([FromRoute] int id)
+    {
+        var campanha = (await _repository.TodosAsync()).Find(c => c.Id == id);
+        return StatusCode(200, campanha);
+    }
+    
+    // Post: Campanha
+    // [Logged]
+    [HttpPost("/campanha")]
+    public async Task<IActionResult> Create([FromBody] CampainDTO campainDTO)
+    {
+        var campanha = BuilderService<Campanha>.Builder(campainDTO);
+        await _repository.IncluirAsync(campanha);
+        return StatusCode(201, campanha);
+    }
+    
+    // Put: Campanha
+    // [Logged]
+    [HttpPut("/campanha/{id}")]
+    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Campanha campanha)
+    {
+
+        if(id != campanha.Id)
         {
-            _context = context;
+            return StatusCode(400, new {Mensagem = "O Id do campanha precisa coincidir com o id passado pela url"});
         }
+        
+        await _repository.AtualizarAsync(campanha);
+        return StatusCode(200, campanha);
+    }
+    
+    // Delete: Campanha
+    // [Logged]
+    [HttpDelete("/campanha/{id}")]
+    public async Task<IActionResult> Delete([FromRoute] int id)
+    {
 
-        // GET: api/Campanha
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Campanha>>> GetCampanhas()
+        var campanha = (await _repository.TodosAsync()).Find(v=>v.Id ==id);
+
+        if(campanha is null)
         {
-          if (_context.Campanhas == null)
-          {
-              return NotFound();
-          }
-            return await _context.Campanhas.ToListAsync();
+            return StatusCode(404, new {Mensagem = "O campanha informado não existe na base de dados"});
         }
-
-        // GET: api/Campanha/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Campanha>> GetCampanha(int id)
-        {
-          if (_context.Campanhas == null)
-          {
-              return NotFound();
-          }
-            var campanha = await _context.Campanhas.FindAsync(id);
-
-            if (campanha == null)
-            {
-                return NotFound();
-            }
-
-            return campanha;
-        }
-
-        // PUT: api/Campanha/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCampanha(int id, Campanha campanha)
-        {
-            if (id != campanha.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(campanha).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CampanhaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Campanha
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Campanha>> PostCampanha(Campanha campanha)
-        {
-          if (_context.Campanhas == null)
-          {
-              return Problem("Entity set 'ContextEntity.Campanhas'  is null.");
-          }
-            _context.Campanhas.Add(campanha);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCampanha", new { id = campanha.Id }, campanha);
-        }
-
-        // DELETE: api/Campanha/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCampanha(int id)
-        {
-            if (_context.Campanhas == null)
-            {
-                return NotFound();
-            }
-            var campanha = await _context.Campanhas.FindAsync(id);
-            if (campanha == null)
-            {
-                return NotFound();
-            }
-
-            _context.Campanhas.Remove(campanha);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool CampanhaExists(int id)
-        {
-            return (_context.Campanhas?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
+        
+        await _repository.ApagarAsync(campanha);
+        return StatusCode(204);
     }
 }
