@@ -9,6 +9,7 @@ using cdf_api_integrador.Models;
 using cdf_api_integrador.Repositories.Entity;
 using cdf_api_integrador.Repositories.Interface;
 using cdf_api_integrador.Services;
+using cdf_api_integrador.Filters;
 
 namespace cdf_api_integrador.Controllers
 {
@@ -39,7 +40,7 @@ namespace cdf_api_integrador.Controllers
         }
         
         // Post: Veiculos
-        // [Logged]
+        [Logged]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CampaingDTO campaingDTO)
         {
@@ -64,7 +65,7 @@ namespace cdf_api_integrador.Controllers
         }
         
         // Delete: Veiculos
-        // [Logged]
+        [Logged]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
