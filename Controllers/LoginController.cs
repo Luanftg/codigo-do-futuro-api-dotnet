@@ -25,7 +25,7 @@ namespace cdf_api_integrador.Controllers
             _repository = repository;
         }
 
-        // Post: Administrador
+        // Post: Login
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] UserLoginDTO userLoginDTO)
         {
@@ -43,7 +43,19 @@ namespace cdf_api_integrador.Controllers
 
             var userLogged = BuilderService<UserLogged>.Builder(user);
             userLogged.Token = TokenJWT.Builder(userLogged);
+
+            this.HttpContext.Response.Cookies.Append("token", userLogged.Token, new CookieOptions
+            {
+                Expires = DateTimeOffset.UtcNow.AddDays(1),
+                HttpOnly = true,
+            });
             return StatusCode(200, userLogged);
+        }
+
+        [HttpGet("/logout")]
+        public void Logout()
+        {
+            this.HttpContext.Response.Cookies.Delete("token");
         }
 
     }     
