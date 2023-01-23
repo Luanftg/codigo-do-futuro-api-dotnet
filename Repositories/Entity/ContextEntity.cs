@@ -11,7 +11,7 @@ public ContextEntity() {}
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         var conexao = Environment.GetEnvironmentVariable("DATABASE_CDF");
-        if(conexao == null) conexao = "Server=localhost;Database=api_cdf-radar;Uid=root;Pwd=Luan_17101988;";
+        if(conexao == null) conexao = "Server=localhost;Database=api_cdf-radar;Uid=root;Pwd=SUA SENHA AQUI;";
         optionsBuilder.UseMySql(conexao, ServerVersion.AutoDetect(conexao));
     }
 
