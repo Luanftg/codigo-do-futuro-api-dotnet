@@ -1,5 +1,4 @@
 using cdf_api_integrador.DTOs;
-using cdf_api_integrador.Filters;
 using cdf_api_integrador.Models;
 using cdf_api_integrador.Repositories.Interface;
 using cdf_api_integrador.Services;
@@ -13,15 +12,19 @@ public class LojasController : ControllerBase
     {
         _repository = repository;
     }
-    // GET: Veiculos
-    [Logged]
+    // GET: Lojas
+
     [HttpGet]
     public async Task<IActionResult> Index()
     {
+        var resut = this.HttpContext.Request.Cookies["token"];
+        if(string.IsNullOrEmpty(this.HttpContext.Request.Cookies["token"])) {
+            return StatusCode(401, new {Mensagem = "Necessita de um token de Autorização"});
+        }
         var loja = await _repository.TodosAsync();
         return StatusCode(200, loja);
     }
-    [Logged]
+
     [HttpGet("{id}")]
     public async Task<IActionResult> Details([FromRoute] int id)
     {
@@ -29,8 +32,8 @@ public class LojasController : ControllerBase
         return StatusCode(200, loja);
     }
     
-    // Post: Veiculos
-    [Logged]
+    // Post: Lojas
+
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] StoreDTO lojaDTO)
     {
@@ -39,8 +42,8 @@ public class LojasController : ControllerBase
         return StatusCode(201, loja);
     }
     
-    // Put: Veiculos
-    [Logged]
+    // Put: Lojas
+
     [HttpPut("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Loja loja)
     {
@@ -54,8 +57,8 @@ public class LojasController : ControllerBase
         return StatusCode(200, loja);
     }
     
-    // Delete: Veiculos
-    [Logged]
+    // Delete: Lojas
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
