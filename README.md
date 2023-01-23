@@ -1,8 +1,10 @@
-# API - Projeto Radar - Código do Futuro
+<center>
+<h1> API - Projeto Radar - Código do Futuro
+</center>
 
 <div align="center">
 
-<h1> :computer: # Equipe: </h1>
+# :computer:  Equipe de DESENVOLVEDORES
 
 </div>
 
@@ -53,8 +55,6 @@
 
 <hr>
 
-## DESENVOLVEDORES
-
 - **INCLUIR PASSWORD NA STRING DE CONEÃO!**
 - Rodar migration para criação do banco:
   - `dotnet ef migrations add MinhaMigracao`
@@ -95,8 +95,10 @@
 
 - [Desafio Final - Codigo do Futuro](https://docs.google.com/document/d/1z0wzqAeLgMYQFg_jFOTQ1xj_BF1Byo7D/edit)
 - [Relações Entity Framework](https://learn.microsoft.com/pt-br/ef/ef6/fundamentals/relationships)
-- **Pacotes**
-- [SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)
+
+#### **Pacotes**
+
+- [SqlServer] (https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)
 
 Scaffold para geração de Controlers
 `dotnet aspnet-codegenerator controller -name UsuariosController -async -api -m Usuario -dc ContextEntity -outDir Controllers`
