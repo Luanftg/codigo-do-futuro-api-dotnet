@@ -44,11 +44,11 @@ namespace cdf_api_integrador.Controllers
             var userLogged = BuilderService<UserLogged>.Builder(user);
             userLogged.Token = TokenJWT.Builder(userLogged);
 
-            this.HttpContext.Response.Cookies.Append("token", userLogged.Token, new CookieOptions
-            {
-                Expires = DateTimeOffset.UtcNow.AddDays(1),
-                HttpOnly = true,
-            });
+            // this.HttpContext.Response.Cookies.Append("token", userLogged.Token, new CookieOptions
+            // {
+            //     Expires = DateTimeOffset.UtcNow.AddDays(1),
+            //     HttpOnly = true,
+            // });
             return StatusCode(200, userLogged);
         }
 
