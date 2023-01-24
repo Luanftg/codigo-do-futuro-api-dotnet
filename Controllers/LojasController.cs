@@ -17,10 +17,6 @@ public class LojasController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Index()
     {
-        //var resut = this.HttpContext.Request.Cookies["token"];
-        // if(string.IsNullOrEmpty(this.HttpContext.Request.Cookies["token"])) {
-        //     return StatusCode(401, new {Mensagem = "Necessita de um token de Autorização"});
-        // }
         var loja = await _repository.TodosAsync();
         return StatusCode(200, loja);
     }
