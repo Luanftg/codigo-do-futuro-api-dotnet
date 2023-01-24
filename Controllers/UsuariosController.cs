@@ -53,6 +53,9 @@ namespace cdf_api_integrador.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] UserDTO userDTO)
         {
+
+            var hashPass = HashService.Hash(userDTO.Senha);
+            userDTO.Senha = hashPass;
             var user = BuilderService<Usuario>.Builder(userDTO);
             await _repository.IncluirAsync(user);
             return StatusCode(201, user);

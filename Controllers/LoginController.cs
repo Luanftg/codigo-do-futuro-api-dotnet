@@ -33,8 +33,9 @@ namespace cdf_api_integrador.Controllers
                 return StatusCode(400, new {
                     Mensagem = "Preencha o email e a senha"
             });
-
-            var user = await _repository.Login(userLoginDTO.Email, userLoginDTO.Senha);
+            
+            var hashPass = HashService.Hash(userLoginDTO.Senha);
+            var user = await _repository.Login(userLoginDTO.Email, hashPass);
             
             if(user is null)
                 return StatusCode(404, new {
@@ -52,6 +53,5 @@ namespace cdf_api_integrador.Controllers
         {
             this.HttpContext.Response.Cookies.Delete("token");
         }
-
     }     
 }
