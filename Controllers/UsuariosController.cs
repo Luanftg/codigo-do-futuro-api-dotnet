@@ -41,9 +41,11 @@ namespace cdf_api_integrador.Controllers
         {
                if(id != usuario.Id)
         {
-            return StatusCode(400, new {Mensagem = "O Id do veículo precisa coincidir com o id passado pela url"});
+            return StatusCode(400, new {Mensagem = "O Id do Usuário precisa coincidir com o id passado pela url"});
         }
         
+        var hashPass = HashService.Hash(usuario.Senha);
+        usuario.Senha = hashPass;
         await _repository.AtualizarAsync(usuario);
         return StatusCode(200, usuario);
     
