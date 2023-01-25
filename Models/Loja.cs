@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace cdf_api_integrador.Models;
 
-[Table('lojas')]
+[Table("lojas")]
 public record Loja
 {
     [Key]
