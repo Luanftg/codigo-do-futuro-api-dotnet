@@ -132,6 +132,6 @@ server {
 
 [Repositório - estratégia regex por path](https://github.com/torneseumprogramador/nginx-config/blob/main/8-nginx-api-gateway/nginx-config-path)
 
-
 ssh -i codigo-do-futuro-azure-key.pem azureuser@172.174.154.130
+
 scp -r -i codigo-do-futuro-azure-key.pem C:\exercicio-angular-cf azureuser@172.174.154.130:/home/azureuser
