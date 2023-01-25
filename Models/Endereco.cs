@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace cdf_api_integrador.Models;
 
+[Table('enderecos')]
 public record Endereco
 {
     [Key]
