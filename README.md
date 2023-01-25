@@ -100,25 +100,9 @@
 
 - [SqlServer] (https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer)
 
-Scaffold para geração de Controlers
-`dotnet aspnet-codegenerator controller -name UsuariosController -async -api -m Usuario -dc ContextEntity -outDir Controllers`
-
 :star: Ideias para implementar
 
-- [ ] `[Table("administradores")]` -annotation
-- [ ] `public Administrador()
-    {
-        this.DataCriacao = DateTime.Now;
-    }` - inicializar DateTime pelo construtor
-- [ ] ` [Required(ErrorMessage = "Nome é obrigatório")][MaxLength(100)]
-    public string Nome { get;set; } = default!;` 
-- [ ] `[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get;set; }`
-- [ ] `var ret = this.dbContexto.SaveChanges();
-        if(ret != 1) throw new Exception("Não foi possivel salvar o dado no banco");
-        await Task.FromResult(ret);` - confirmação do SaveChange ?
-
-**Paginação**
+#### Paginação
 
 ```c#
 //GET: Pedidos
@@ -144,7 +128,7 @@ Scaffold para geração de Controlers
             );
 ```
 
-**Modelo de query para Pedidos**
+#### Modelo de query para Pedidos
 
 ```c#
     // ==== link to sql
