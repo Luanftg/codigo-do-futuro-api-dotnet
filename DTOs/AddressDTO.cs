@@ -1,11 +1,7 @@
-using System.ComponentModel.DataAnnotations;
+namespace cdf_api_integrador.DTOs;
 
-namespace cdf_api_integrador.Models;
-
-public record Endereco
+public record AdressDTO
 {
-    [Key]
-    public int Id {get;set;}= default!;
     public string Cep {get;set;} = default!;
     public string Logradouro {get;set;} = default!;
     public string Numero {get;set;} = default!;
