@@ -106,6 +106,7 @@ server {
 [Repositório Danilo - nginx](https://github.com/torneseumprogramador/nginx-config/blob/main/8-nginx-api-gateway/nginx-proxy_pass-api-gateway-regex-route-path)
 
 ```
+
 upstream nodejs {
     server 10.0.0.4:30000;
 }
@@ -134,4 +135,4 @@ server {
 
 ssh -i codigo-do-futuro-azure-key.pem azureuser@172.174.154.130
 
-scp -r -i codigo-do-futuro-azure-key.pem C:\exercicio-angular-cf azureuser@172.174.154.130:/home/azureuser
+scp -r -i codigo-do-futuro-azure-key.pem C:\radar-sozinho azureuser@172.174.154.130:/home/azureuser

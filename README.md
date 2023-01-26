@@ -69,6 +69,7 @@
 
 #### :star: Criação dos EndPoints
 
+
 - [x] `/principal`
 - [x] `/login`
 - [x] `/usuarios`
@@ -79,7 +80,11 @@
 - [x] `/pedidos-produtos`
 - [x] `/posicoes-produtos`
 
+![Alt text](assets/swagger-crud.jpg)
+
 #### :star: Criação dos Serviços
+
+![Alt text](assets/swagger.jpg)
 
 - [x] Autenticação com JWT
 - [x] Hash de para armazenar senha criptografada no banco de dados
@@ -92,6 +97,22 @@
 - Jose - JWT
 - Dotnet CORE 7.0
 - Azure
+
+- Diagnosticos
+
+![Alt text](assets/azure-dashboard.jpg)
+
+- Custo por serviço
+
+![Alt text](assets/azure-dashboard-fluxo.jpg)
+
+- Metrics
+
+![Alt text](assets/metrics.jpg)
+
+- Price
+  
+![Alt text](assets/price.jpg)
 
 ### Referências
 
