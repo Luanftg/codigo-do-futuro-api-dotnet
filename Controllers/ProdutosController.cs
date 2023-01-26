@@ -14,14 +14,14 @@ public class ProdutosController : ControllerBase
         _repository = repository;
     }
     // GET: Produtos
-    // [Logged]
+    [Logged]
     [HttpGet]
     public async Task<IActionResult> Index()
     {
         var produto = await _repository.TodosAsync();
         return StatusCode(200, produto);
     }
-    // [Logged]
+    [Logged]
     [HttpGet("{id}")]
     public async Task<IActionResult> Details([FromRoute] int id)
     {
@@ -30,7 +30,7 @@ public class ProdutosController : ControllerBase
     }
     
     // Post: Produtos
-    // [Logged]
+    [Logged]
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] ProductDTO produtoDTO)
     {
@@ -40,7 +40,7 @@ public class ProdutosController : ControllerBase
     }
     
     // Put: Produtos
-    // [Logged]
+    [Logged]
     [HttpPut("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] Produto produto)
     {
@@ -55,7 +55,7 @@ public class ProdutosController : ControllerBase
     }
     
     // Delete: Produtos
-    // [Logged]
+    [Logged]
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {

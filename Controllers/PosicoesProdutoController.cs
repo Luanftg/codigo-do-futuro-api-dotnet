@@ -6,10 +6,10 @@ using cdf_api_integrador.Services;
 using Microsoft.AspNetCore.Mvc;
 
 [Route("[controller]")]
-public class PosicoesProdutoController : ControllerBase
+public class PosicoesProdutosController : ControllerBase
 {
     private IRepository<PosicoesProduto> _repository;
-    public PosicoesProdutoController(IRepository<PosicoesProduto> repository)
+    public PosicoesProdutosController(IRepository<PosicoesProduto> repository)
     {
         _repository = repository;
     }
