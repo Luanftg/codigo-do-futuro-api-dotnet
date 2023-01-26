@@ -60,6 +60,11 @@
 - *Construir uma API para que possamos ter o controle interno sobre as informações de nosso sistema Radar*
 - *O sistema será desenvolvido em AspNet core API C#*
 
+Link do Repositório do [Projeto Radar - FrontEnd](https://github.com/Luanftg/projeto-radar)
+
+- :star: Link da Api em Produção: [http://azure-api.luanftg.com.br/swagger/index.html](http://azure-api.luanftg.com.br/swagger/index.html)
+- :star: Link do Front-End em Produção: [http://azure-front.luanftg.com.br/](http://azure-front.luanftg.com.br/)
+
 ### Solução
 
 :star: Modelagem
